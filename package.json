@@ -1,0 +1,28 @@
+{
+  "name": "graphql-mongo-crud-on-one-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garricknorthover/graphql-mongo-crud-on-one-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garricknorthover/graphql-mongo-crud-on-one-page/issues"
+  },
+  "homepage": "https://github.com/garricknorthover/graphql-mongo-crud-on-one-page#readme",
+  "dependencies": {
+    "graphql-yoga": "^0.2.3",
+    "mongoose": "^4.13.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "nodeman": "^1.1.2"
+  }
+}
