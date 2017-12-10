@@ -1,0 +1,1 @@
+# graphql-mongo-crud-on-one-page
