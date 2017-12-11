@@ -1,6 +1,9 @@
 import { GraphQLServer } from 'graphql-yoga'
 import mongoose from 'mongoose'
 
+// typeDefs and resolvers would normally be placed in their own js file
+// graphql-yoga has some magic behind the scenes calling makeExecutableSchema on typeDefs
+
 const typeDefs = `
 type Cat {
     _id: String!
@@ -15,24 +18,28 @@ type Query {
 }
 type Mutation {
     createCat(
-        firstName: String,
-        lastName: String,
-        phone: String,
-        email: String,
+        firstName: String
+        lastName: String
+        phone: String
+        email: String
         consignNumber: String): Cat!
 
     updateCat(
-        _id: String!,
-        firstName: String,
-        lastName: String,
-        phone: String,
-        email: String,
+        _id: String!
+        firstName: String
+        lastName: String
+        phone: String
+        email: String
         consignNumber: String): Cat!
 
     deleteCat(_id: String): Cat
 }
 `
-
+// allCats and createCat are your standard resolvers that are shown on tutorials
+// updateCat is my attempt and is pretty clunkey. there is a mongoose function called
+// findByIdAndUpdate which works but does not refresh properly in graphiql
+// so just assigned the fields individually
+// I might have a go at using the spread operator ... , which will be a bit more concise and pleasing to the eye
 const resolvers = {
     Query: {
         allCats: async (parent, args, { Cat}) => {
@@ -45,26 +52,21 @@ const resolvers = {
     },
     Mutation: {
         createCat: async (parent, args, { Cat }) => {
-            const cust = await new Cat(args).save();
+            const kitty = await new Cat(args).save();
             kitty._id = kitty._id.toString()
             return kitty
         },
         updateCat:  async (parent, args, { Cat }) => {
-            const cust =  await Cat.findById(args._id, args)
-                cust.firstName = args.firstName
-                cust.lastName = args.lastName
-                cust.phone = args.phone
-                cust.email = args.email
-                cust.consignNum = args.consignNum
-                
-            return cust
+            await Cat.findByIdAndUpdate(args._id, args) 
+            return args
         },
         deleteCat: async(parent, args, { Cat }) => {
-            const kitty = await Cat.remove(args)
+            await Cat.remove(args)
+            return args
         }
     }
 }
-
+// Here's the mongo part where you connect and declare a mongo schema
 mongoose.connect('mongodb://localhost/kittycat')
 
 const Cat = mongoose.model('Cat', {
