@@ -54,7 +54,7 @@ const resolvers = {
     }
 }
 // Here's the mongo part where you connect and declare a mongo schema
-mongoose.connect('mongodb://localhost/kittycat')
+mongoose.connect('mongodb://localhost/meoww')
 const Cat = mongoose.model('Cat', {
     name: String,
     occupation: String
