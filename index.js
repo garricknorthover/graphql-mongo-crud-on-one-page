@@ -44,8 +44,8 @@ const resolvers = {
             return kitty
         },
         updateCat: async (parent, args, { Cat }) => {
-            await Cat.findByIdAndUpdate(args._id, args)
-            return args
+            const result = await Cat.findByIdAndUpdate(args._id, args, {new:true})
+            return result
         },
         deleteCat: async (parent, args, { Cat }) => {
             await Cat.remove(args)
