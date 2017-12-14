@@ -14,8 +14,8 @@ export default {
             kitty._id = kitty._id.toString()
             return kitty
         },
-        updateCat: async (parent, args, { Cat }) => {
-            const result = await Cat.findByIdAndUpdate(args._id, args, {new:true})
+        updateCat: (parent, args, { Cat }) => {
+            const result = Cat.findByIdAndUpdate(args._id, args, {new:true})
             return result
         },
         deleteCat: async (parent, args, { Cat }) => {
