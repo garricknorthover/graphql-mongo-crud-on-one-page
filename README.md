@@ -1,4 +1,4 @@
-# graphql-mongo-crud-on-one-page
+# insta-graphql-mongo-crud
 
 A really small Graphql server with Mongo
 
@@ -10,6 +10,3 @@ run npm install in the folder and then npm start
 The Grapql Playground will be running on localhost:4000
 
 
-```
-https://github.com/garricknorthover/graphql-mongo-crud-on-one-page.git
-```
