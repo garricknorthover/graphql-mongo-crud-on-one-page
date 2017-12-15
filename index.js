@@ -4,7 +4,6 @@ import typeDefs from './schema'
 import resolvers from './resolvers'
 
 mongoose.connect('mongodb://localhost/meoww')
-mongoose.Promise = global.Promise;
 const Cat = mongoose.model('Cat', {
     name: String,
     occupation: String

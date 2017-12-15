@@ -1,25 +1,19 @@
 export default {
+
     Query: {
-        allCats: async (parent, args, { Cat }) => {
-            const cats = await Cat.find()
-            return cats.map((objToStr) => {
-                objToStr._id = objToStr._id.toString()
-                return objToStr
-            })
-        }
-    },
+        allCats: (parent, args, { Cat }) => {
+            return Cat.find()        
+    }},
+
     Mutation: {
-        createCat: async (parent, args, { Cat }) => {
-            const kitty = await new Cat(args).save();
-            kitty._id = kitty._id.toString()
-            return kitty
+        createCat: (parent, args, { Cat}) => {
+            return new Cat(args).save();
         },
         updateCat: (parent, args, { Cat }) => {
-            return Cat.findByIdAndUpdate(args._id, args, {new:true})
+            return Cat.findByIdAndUpdate(args._id, args, { new:true })
         },
-        deleteCat: async (parent, args, { Cat }) => {
-            await Cat.remove(args)
-            return args
+        deleteCat: (parent, args, { Cat }) => {
+            return Cat.findByIdAndRemove(args, { select:Cat._id } ).exec()                       
         }
     }
 }
