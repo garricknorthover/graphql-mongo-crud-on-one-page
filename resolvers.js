@@ -6,7 +6,7 @@ export default {
     }},
 
     Mutation: {
-        createCat: (parent, args, { Cat}) => {
+        createCat: (parent, args, { Cat }) => {
             return new Cat(args).save();
         },
         updateCat: (parent, args, { Cat }) => {
